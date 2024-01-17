@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { auth } from ".././firebase.config";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 const HomePage = () => {
   interface User {
     id: string;
     name: string;
-    email: string;
   }
 
-  const [users, setUser] = useState<User | null>(null);
+  const [users, setUser] = useState<User[]>([]);
   useEffect(() => {
-    fetch("/netlify/functions/getUser")
+    fetch("/.netlify/functions/getUser")
       .then((response) => response.json())
       .then((data) => setUser(data))
       .catch((error) => console.error("Error:", error));
@@ -35,8 +34,10 @@ const HomePage = () => {
     <div>
       <nav className="flex justify-between p-5 bg-blue-500 text-white">
         <div>
-          <button className="mr-4">Home</button>
-          <button>Product</button>
+          <Link to="/" className="mr-4">
+            Home
+          </Link>
+          <Link to="/product">Product</Link>
         </div>
         <div>
           <span className="mr-4">{user.users.displayName}</span>
@@ -71,6 +72,22 @@ const HomePage = () => {
             </p>
           </div>
         )}
+        <span className="flex items-center text-2xl justify-center font-bold ">
+          Mock API user List
+        </span>
+        {users?.map((user: any) => (
+          <div
+            key={user.id}
+            className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+          >
+            <p className="block text-gray-700 text-lg font-bold mb-2">
+              Name: <span className="font-semibold">{user.name}</span>
+            </p>
+            <p className="mb-2">
+              ID: <span className="font-semibold">{user.id}</span>
+            </p>
+          </div>
+        ))}
       </div>
     </div>
   );

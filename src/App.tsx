@@ -4,10 +4,10 @@ import { useDispatch } from "react-redux";
 import { fetchUser } from "../src/redux/user/userSlice";
 import { auth } from "./firebase.config";
 import { useEffect } from "react";
-// import { useSelector } from "react-redux";
 import type { AppDispatch } from "./store";
 import HomePage from "./components/HomePage";
-
+import ProductPage from "./components/Product";
+import ProductDetails from "./components/ProductDetails";
 function App() {
   // interface RootState {
   //   user: any;
@@ -31,6 +31,8 @@ function App() {
       <Routes>
         <Route path="/" element={<StartPage />} />
         <Route path="/homepage" element={<HomePage />} />
+        <Route path="/product" element={<ProductPage />} />
+        <Route path="/product/:id" element={<ProductDetails />} />
       </Routes>
     </Router>
   );

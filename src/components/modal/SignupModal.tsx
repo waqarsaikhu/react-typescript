@@ -4,7 +4,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { db, auth } from "../../firebase.config";
 import { useNavigate } from "react-router-dom";
 
-const SignupModal = () => {
+const SignupModal = (closeModal: any) => {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
@@ -56,7 +56,7 @@ const SignupModal = () => {
       setNumber("");
       alert("You signed up successfully. Now please login.");
       await auth.signOut();
-      navigate("/");
+      closeModal();
     } catch (error) {
       console.error("Error signing up with email and password", error);
     }
