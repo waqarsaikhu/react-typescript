@@ -1,8 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { auth } from ".././firebase.config";
 import { useNavigate } from "react-router-dom";
 const HomePage = () => {
+  interface User {
+    id: string;
+    name: string;
+    email: string;
+  }
+
+  const [users, setUser] = useState<User | null>(null);
+  useEffect(() => {
+    fetch("/netlify/functions/getUser")
+      .then((response) => response.json())
+      .then((data) => setUser(data))
+      .catch((error) => console.error("Error:", error));
+  }, []);
+  console.log(users);
+
   interface RootState {
     user: any;
   }
