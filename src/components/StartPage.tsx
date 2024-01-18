@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import SignupModal from "./modal/SignupModal";
 import LoginModal from "./modal/LoginModal";
 

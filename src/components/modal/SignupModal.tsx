@@ -2,11 +2,8 @@ import React, { useState } from "react";
 import { doc, setDoc } from "firebase/firestore";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { db, auth } from "../../firebase.config";
-import { useNavigate } from "react-router-dom";
 
 const SignupModal = (closeModal: any) => {
-  const navigate = useNavigate();
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [displayName, setDisplayName] = useState("");
