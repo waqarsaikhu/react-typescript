@@ -34,7 +34,7 @@ const HomePage = () => {
     <div>
       <nav className="flex justify-between p-5 bg-blue-500 text-white">
         <div>
-          <Link to="/" className="mr-4">
+          <Link to="/homepage" className="mr-4">
             Home
           </Link>
           <Link to="/product">Product</Link>
